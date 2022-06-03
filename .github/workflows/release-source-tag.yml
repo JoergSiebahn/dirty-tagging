@@ -15,14 +15,13 @@ jobs:
         env:
           TAG_NAME: ${{ github.ref_name }}
         run: |
-          echo "x$TAG_NAME"
           if [[ "$TAG_NAME" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then echo "true"; else echo "false"; fi
 
       - id: check
         name: check
         env:
           TAG_NAME: ${{ github.ref_name }}
-        run: echo "::set-output name=process::$(if [[ "$TAG_NAME" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then echo "true"; else echo "false"; fi)"
+        run: echo "::set-output name=process::$(if [[ "$TAG_NAME" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then echo "true"; else echo "false"; fi)"
   build-release:
     needs: process-release-check
     if: needs.process-release-check.outputs.process == 'true'
