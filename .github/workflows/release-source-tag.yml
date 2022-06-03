@@ -42,7 +42,7 @@ jobs:
           TAG_NAME: ${{ github.ref_name }}
         run: >
           mkdir bundle &&
-          kustomize build bases/test > bundle/k8s.yaml
+          kustomize build bases/test-ns > bundle/k8s.yaml
 
       - name: Push
         env:
