@@ -53,5 +53,5 @@ jobs:
           git config --global user.email "${ACTOR}@users.noreply.github.com"
           git add .
           git commit -m "Adding extra content for $TAG_NAME"
-          git tag -a "$TAG_NAME.k8s" -m "Adding extra content for $TAG_NAME"
-          git push origin "refs/tags/$TAG_NAME.k8s"
+          git tag -a "$TAG_NAME-k8s" -m "Adding extra content for $TAG_NAME"
+          git push origin "refs/tags/$TAG_NAME-k8s"
