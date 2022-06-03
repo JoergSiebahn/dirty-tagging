@@ -31,10 +31,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2.4.0
 
-      - name: Update file
+      - name: Update image tag
         env:
           TAG_NAME: ${{ github.ref_name }}
-        run: echo "Extra content for v$TAG_NAME compared to $TAG_NAME" >> README.md
+        run: >
+          yq -i e '.images |= [{"name": "localhost/some-image", "newName": "public.host/some-image", "newTag": "1.2.3"}]' bases/test/kustomization.yaml
+
+      - name: Build bundle
+        env:
+          TAG_NAME: ${{ github.ref_name }}
+        run: >
+          mkdir bundle &&
+          kustomize build bases/test/kustomization.yaml > bundle/k8s.yaml
 
       - name: Push
         env:
@@ -43,7 +51,7 @@ jobs:
         run: |
           git config --global user.name 'Github Actions'
           git config --global user.email "${ACTOR}@users.noreply.github.com"
-          git add README.md
+          git add .
           git commit -m "Adding extra content for $TAG_NAME"
           git tag -a "v$TAG_NAME" -m "Adding extra content for $TAG_NAME"
           git push origin "refs/tags/v$TAG_NAME"
