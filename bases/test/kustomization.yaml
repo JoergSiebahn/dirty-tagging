@@ -5,3 +5,4 @@ configMapGenerator:
   - name: test
     literals:
       - foo=bar
+      - bar=foo
