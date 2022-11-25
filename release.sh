@@ -7,3 +7,7 @@ yq -i e ".images = [{\"name\": \"quay.io/sdase/opa\", \"newName\": \"quay.io/sda
 mkdir bundle || echo ""
 
 kustomize build bases/release > bundle/k8s.yaml
+
+git add bundle/k8s.yaml
+git add bases/release-no-ns/kustomization.yaml
+git commit -m "chore: prepare release ${TAG_NAME}"
