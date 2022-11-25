@@ -1,0 +1,8 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../test
+images:
+  - name: quay.io/sdase/opa
+    newName: quay.io/sdase/opa
+    newTag: 1.2.3

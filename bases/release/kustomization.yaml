@@ -4,8 +4,5 @@ kind: Kustomization
 namespace: test
 
 resources:
-  - ../test
-
-images:
-  - name: quay.io/sdase/opa
-    newTag: 0.0.0
+  - test-ns.yaml
+  - ../release-no-ns
