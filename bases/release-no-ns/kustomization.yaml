@@ -5,4 +5,4 @@ resources:
 images:
   - name: quay.io/sdase/opa
     newName: quay.io/sdase/opa
-    newTag: 0.6.2
+    newTag: 0.6.3
